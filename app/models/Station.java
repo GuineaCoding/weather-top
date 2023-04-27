@@ -17,6 +17,7 @@ public class Station extends Model
     public double windSpeed;
 
     public double temperature;
+    public float windDirection;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
     private int code;
@@ -86,6 +87,44 @@ public class Station extends Model
     }
     public double getFahrenheit() {
         return (temperature * 1.8) + 32;
+    }
+
+    public static String getCompassDirection(double compassDirection) {
+        String direction = "";
+        if (compassDirection >= 348.75 || compassDirection < 11.25) {
+            direction = "North";
+        } else if (compassDirection >= 11.25 && compassDirection < 33.75) {
+            direction = "North-Northeast";
+        } else if (compassDirection >= 33.75 && compassDirection < 56.25) {
+            direction = "Northeast";
+        } else if (compassDirection >= 56.25 && compassDirection < 78.75) {
+            direction = "East-Northeast";
+        } else if (compassDirection >= 78.75 && compassDirection < 101.25) {
+            direction = "East";
+        } else if (compassDirection >= 101.25 && compassDirection < 123.75) {
+            direction = "East-Southeast";
+        } else if (compassDirection >= 123.75 && compassDirection < 146.25) {
+            direction = "Southeast";
+        } else if (compassDirection >= 146.25 && compassDirection < 168.75) {
+            direction = "South-Southeast";
+        } else if (compassDirection >= 168.75 && compassDirection < 191.25) {
+            direction = "South";
+        } else if (compassDirection >= 191.25 && compassDirection < 213.75) {
+            direction = "South-Southwest";
+        } else if (compassDirection >= 213.75 && compassDirection < 236.25) {
+            direction = "Southwest";
+        } else if (compassDirection >= 236.25 && compassDirection < 258.75) {
+            direction = "West-Southwest";
+        } else if (compassDirection >= 258.75 && compassDirection < 281.25) {
+            direction = "West";
+        } else if (compassDirection >= 281.25 && compassDirection < 303.75) {
+            direction = "West-Northwest";
+        } else if (compassDirection >= 303.75 && compassDirection < 326.25) {
+            direction = "Northwest";
+        } else if (compassDirection >= 326.25 && compassDirection < 348.75) {
+            direction = "North-Northwest";
+        }
+        return direction;
     }
 
 }
