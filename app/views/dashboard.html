@@ -1,0 +1,56 @@
+#{extends 'main.html' /}
+#{set title:'Dashboard' /}
+
+#{menu id:"dashboard"/}
+
+#{list items:stations, as:'station'}
+<section id="dashboard-box" class="box">
+    <div class="content">
+        <h1 class="title station-title">
+            ${station.name}
+        </h1>
+        <div class="columns">
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">${station.name}</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Weather</p>
+                <p class="reading-paragraph">${station.getCodeDescription(station.getLastReading().code)}</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Temp</p>
+                <p class="reading-paragraph">${station.getLastReading().temperature} °C</p>
+                <p class="reading-paragraph">${station.getLastReading().getTemperatureInFahrenheit()} °F</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Wind</p>
+                <p class="reading-paragraph">${station.getBeaufortLabel(station.getLastReading().windSpeed)} bft</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Pressure</p>
+                <p class="reading-paragraph">${station.getLastReading().pressure}</p>
+            </div>
+        </div>
+        <table id="reading-list" class="ui fixed table">
+            <thead>
+            <tr>
+                <th>Code</th>
+                <th>Temp</th>
+                <th>Duration</th>
+                <th>WindSpeed</th>
+            </tr>
+            </thead>
+            <tbody>
+            #{list items:station.readings, as:'reading'}
+            <tr>
+                <td>${reading.code}</td>
+                <td>${reading.temperature}</td>
+                <td>${reading.windSpeed}</td>
+                <td>${reading.pressure}</td>
+            </tr>
+            #{/list}
+            </tbody>
+        </table>
+    </div>
+</section>
+#{/list}

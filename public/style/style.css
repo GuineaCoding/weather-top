@@ -1,0 +1,124 @@
+p {
+    font-size: 1.5rem;
+    color: #F5F5F5;
+}
+
+h1 {
+    color: #008080 !important;
+}
+.generic-paragraph {
+    color: #2F4F4F;
+}
+
+.secondary-paragraph {
+    font-weight: 800;
+    color: #F5F5F5;
+    font-size: 30px;
+}
+
+.reading-paragraph {
+    color: #deef44;
+    font-weight: 800;
+}
+.station-title {
+    font-size: 40px !important;
+    font-weight: 800 !important;
+}
+
+#reading-list {
+    font-size: 20px;
+    color: #deef44;
+    font-weight: 800;
+}
+
+#reading-list > thead > tr > th {
+    font-size: 25px;
+    font-weight: 800;
+    color: #008080;
+}
+
+#last-reading-columns {
+    /*background: linear-gradient(90deg, rgba(5,242,219,1) 0%, rgba(2,21,38,1) 100%);*/
+}
+.last-reading-column {
+    background-color: #00452a;
+    margin: 10px;
+}
+#menu-section {
+    padding: 10px;
+    background-color: #008080;
+}
+
+#navbar-section {
+    background-color: #008080;
+}
+
+.navbar-item {
+    border: 1px solid #008080;
+    border-radius: 5px;
+    color: #deef44;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.5rem;
+}
+
+.navbar-item:hover {
+    background-color: #008080;
+    color: #F5F5F5;
+    cursor: pointer;
+}
+
+.navbar-item:focus {
+    background-color: #008080;
+    color: #F5F5F5;
+    outline: none;
+}
+
+#start {
+    font-size: 1.5rem;
+    margin-right: 20px;
+}
+
+#start:hover {
+    color: #F5F5F5;
+}
+
+#navbar-section p {
+    color: #F5F5F5;
+}
+
+/*about html*/
+
+.header-container {
+    margin-bottom: 1rem;
+}
+
+.columns {
+    margin: 0;
+}
+
+.header-container .column.is-half img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #008080;
+    margin-bottom: 1rem;
+}
+
+/*footer*/
+
+.footer {
+    background-color: #008080;
+    padding: 1.5rem 0;
+}
+
+
