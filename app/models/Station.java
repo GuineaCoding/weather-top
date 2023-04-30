@@ -10,8 +10,7 @@ import javax.persistence.OneToMany;
 import play.db.jpa.Model;
 
 @Entity
-public class Station extends Model
-{
+public class Station extends Model {
     public String name;
 
     public double windSpeed;
@@ -22,11 +21,11 @@ public class Station extends Model
     public List<Reading> readings = new ArrayList<Reading>();
     private int code;
 
-    public Station(String name, double windSpeed)
-    {
+    public Station(String name, double windSpeed) {
         this.name = name;
         this.windSpeed = windSpeed;
     }
+
     public Reading getLastReading() {
         if (readings.isEmpty()) {
             return null;
@@ -34,6 +33,7 @@ public class Station extends Model
             return readings.get(readings.size() - 1);
         }
     }
+
     public String getCodeDescription(int code) {
         switch (code) {
             case 100:
@@ -56,6 +56,7 @@ public class Station extends Model
                 return "Unknown";
         }
     }
+
     public int getBeaufortLabel(double windSpeed) {
         if (windSpeed < 1) {
             return 0;
@@ -85,6 +86,7 @@ public class Station extends Model
             return 12;
         }
     }
+
     public double getFahrenheit() {
         return (temperature * 1.8) + 32;
     }

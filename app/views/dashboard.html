@@ -26,6 +26,8 @@
                 <p class="secondary-paragraph">Wind</p>
                 <p class="reading-paragraph">${station.getBeaufortLabel(station.getLastReading().windSpeed)} bft</p>
                 <p class="reading-paragraph">${station.getCompassDirection(station.getLastReading().windDirection)}</p>
+                <p class="reading-paragraph">${station.getLastReading().getWindChill()}</p>
+                </p>
             </div>
             <div class="column last-reading-column">
                 <p class="secondary-paragraph">Pressure</p>
