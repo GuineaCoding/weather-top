@@ -7,10 +7,9 @@ import play.mvc.Controller;
 
 public class StationCtrl extends Controller
 {
-    public static void index(Long id)
-    {
-        Station station = models.Station.findById(id);
-        Logger.info ("Station id = " + id);
+    public static void index(String name) {
+        Station station = Station.find("byName", name).first();
+        Logger.info("Station name = " + name);
         render("station.html", station);
     }
     public static void deletesong (Long id, Long stationid)
