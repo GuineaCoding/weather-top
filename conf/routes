@@ -8,7 +8,7 @@ GET     /dashboard                              Dashboard.index
 GET     /about                                  About.index
 GET     /admin                                  Admin.index
 GET     /style/style.css                        staticDir:app/style
-GET     /station/{id}                         StationCtrl.index
+GET     /station/{name}                         StationCtrl.index
 
 
 # Ignore favicon requests

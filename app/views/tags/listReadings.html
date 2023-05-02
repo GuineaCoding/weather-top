@@ -1,17 +1,12 @@
-#{extends 'main.html' /}
-#{set title:'Station' /}
-
-#{menu id:"dashboard"/}
-<section class="box">
-    <div>
-        <h1 class="title">
+#{list items:stations, as:'station'}
+<section id="dashboard-box" class="box">
+    <div class="content">
+        <h1 class="title station-title">
             ${station.name}
         </h1>
-    </div>
-</section>
-<section class="box">
-<div>
-    <div class="content">
+        <a href="/" class="icon has-text-primary">
+            <i class="fas fa-folder"></i>
+        </a>
         <div class="columns">
             <div class="column last-reading-column">
                 <p class="secondary-paragraph">${station.name}</p>
@@ -45,7 +40,6 @@
                 <th>Wind Speed</th>
                 <th>Wind Direction</th>
                 <th>Pressure</th>
-                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -56,14 +50,49 @@
                 <td>${reading.windSpeed}</td>
                 <td>${reading.windDirection}</td>
                 <td>${reading.pressure}</td>
-                <td>
-                    <a href="@{StationCtrl.deleteReading(reading.id, station.id)}">Delete</a>
-                </td>
             </tr>
             #{/list}
             </tbody>
         </table>
     </div>
-</div>
+    <form action="" method="POST">
+        <div class="columns">
+            <div class="field column">
+                <label class="label">Code</label>
+                <div class="control">
+                    <input class="input" placeholder="Code" type="text" name="Code">
+                </div>
+            </div>
+            <div class="field column">
+                <label class="label">Temperature</label>
+                <div class="control">
+                    <input class="input" placeholder="Temperature" type="text" name="Temperature">
+                </div>
+            </div>
+            <div class="field column">
+                <label class="label">Wind Speed</label>
+                <div class="control">
+                    <input class="input" placeholder="Wind Speed" type="number" name="Wind Speed">
+                </div>
+            </div>
+            <div class="field column">
+                <label class="label">Wind Direction</label>
+                <div class="control">
+                    <input class="input" placeholder="Duration" type="number" name="Wind Direction">
+                </div>
+            </div>
+            <div class="field column">
+                <label class="label">Pressure</label>
+                <div class="control">
+                    <input class="input" placeholder="Pressure" type="number" name="Pressure">
+                </div>
+            </div>
+        </div>
+        <div class="field mt-4">
+            <div class="control">
+                <button class="button is-info">Submit Report</button>
+            </div>
+        </div>
+    </form>
 </section>
-#{addReading /}
+#{/list}
