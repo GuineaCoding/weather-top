@@ -15,9 +15,9 @@ public class Dashboard extends Controller
   }
   public static void addStation (String title)
   {
-    Station playlist = new Station (title, 0);
-    Logger.info ("Adding a new playlist called " + title);
-    playlist.save();
+    Station newStation = new Station (title);
+    Logger.info ("Adding a new Station called " + title);
+    newStation.save();
     redirect ("/dashboard");
   }
 }

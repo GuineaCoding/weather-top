@@ -35,7 +35,5 @@ public class Reading extends Model
         // Convert wind chill back to Celsius
         return windChill;
     }
-
-
 }
 

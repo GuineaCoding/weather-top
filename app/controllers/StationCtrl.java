@@ -22,13 +22,12 @@ public class StationCtrl extends Controller {
         render("station.html", station);
     }
 
-    public static void addReading(Long id, int code, float temperature, float windSpeed, int pressure, float windDirection)
-    {
+    public static void addReading(Long stationId, int code, float temperature, float windSpeed, int pressure, float windDirection) {
         Reading reading = new Reading(code, temperature, windSpeed, pressure, windDirection);
-        Station station = Station.findById(id);
+        Station station = Station.findById(stationId);
         station.readings.add(reading);
         station.save();
-        redirect("/stations/" + station.name);
+        redirect("/station/" + station.name);
     }
 }
 

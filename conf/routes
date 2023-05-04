@@ -11,7 +11,7 @@ GET     /style/style.css                        staticDir:app/style
 GET     /station/{name}                         StationCtrl.index
 
 POST    /dashboard/addStation                   Dashboard.addStation
-POST    /station/{name}/addReading              StationCtrl.addReading
+POST    /station/{stationId}/addReading         StationCtrl.addReading
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

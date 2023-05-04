@@ -1,34 +1,34 @@
 <section id="dashboard-box" class="box">
-  <form action="/station/${_station.name}/addReading" method="POST">
+  <form action="/stations/${_stationId}/addReading" method="POST">
     <div class="columns">
       <div class="field column">
         <label class="label">Code</label>
         <div class="control">
-          <input class="input" placeholder="Code" type="text" name="Code">
+          <input class="input" placeholder="Code" type="number" name="Code">
         </div>
       </div>
       <div class="field column">
         <label class="label">Temperature</label>
         <div class="control">
-          <input class="input" placeholder="Temperature" type="text" name="Temperature">
+          <input class="input" placeholder="Temperature" type="number" name="temperature">
         </div>
       </div>
       <div class="field column">
         <label class="label">Wind Speed</label>
         <div class="control">
-          <input class="input" placeholder="Wind Speed" type="number" name="Wind Speed">
+          <input class="input" placeholder="Wind Speed" type="number" name="windSpeed">
         </div>
       </div>
       <div class="field column">
         <label class="label">Wind Direction</label>
         <div class="control">
-          <input class="input" placeholder="Duration" type="number" name="Wind Direction">
+          <input class="input" placeholder="Wind Direction" type="number" name="windDirection">
         </div>
       </div>
       <div class="field column">
         <label class="label">Pressure</label>
         <div class="control">
-          <input class="input" placeholder="Pressure" type="number" name="Pressure">
+          <input class="input" placeholder="Pressure" type="number" name="pressure">
         </div>
       </div>
     </div>

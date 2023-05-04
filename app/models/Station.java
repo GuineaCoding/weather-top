@@ -12,18 +12,15 @@ import play.db.jpa.Model;
 @Entity
 public class Station extends Model {
     public String name;
-
     public double windSpeed;
-
     public double temperature;
     public float windDirection;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
     private int code;
 
-    public Station(String name, double windSpeed) {
+    public Station(String name) {
         this.name = name;
-        this.windSpeed = windSpeed;
     }
 
     public Reading getLastReading() {
@@ -128,7 +125,4 @@ public class Station extends Model {
         }
         return direction;
     }
-
 }
-
-
