@@ -1,5 +1,4 @@
 #{extends 'main.html' /}
-#{set title:'Dashboard' /}
 
 #{menu id:"dashboard"/}
 
@@ -8,9 +7,13 @@
     <h1 class="title">
         ${station.name}
     </h1>
-    <a href="/station/${station.name}" class="icon has-text-primary">
+    <a href="/stations/${station.id}" class="icon has-text-primary">
         <i class="fas fa-folder"></i>
+    </a>
+    <a href="/dashboard/deletePlaylist/${station.id}" class="icon has-text-danger">
+        <i class="fas fa-trash"></i>
     </a>
 </div>
 #{/list}
+
 #{addStation /}

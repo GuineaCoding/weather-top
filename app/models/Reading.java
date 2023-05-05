@@ -36,4 +36,3 @@ public class Reading extends Model
         return windChill;
     }
 }
-

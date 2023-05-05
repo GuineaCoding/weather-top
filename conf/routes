@@ -7,11 +7,15 @@ GET     /                                       Start.index
 GET     /dashboard                              Dashboard.index
 GET     /about                                  About.index
 GET     /admin                                  Admin.index
-GET     /style/style.css                        staticDir:app/style
-GET     /station/{name}                         StationCtrl.index
 
-POST    /dashboard/addStation                   Dashboard.addStation
-POST    /station/{stationId}/addReading         StationCtrl.addReading
+GET     /stations/{name}                         StationCtrl.index
+GET     /stations/{id}/deleteReading/{readingid}     StationCtrl.deleteReading
+GET     /style/style.css                        staticDir:app/style
+GET     /dashboard/deletePlaylist/{id}          Dashboard.deletePlaylist
+
+POST    /stations/{id}/addReading                 StationCtrl.addReading
+POST    /dashboard/addStation                  Dashboard.addStation
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

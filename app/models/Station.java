@@ -12,12 +12,10 @@ import play.db.jpa.Model;
 @Entity
 public class Station extends Model {
     public String name;
-    public double windSpeed;
+
     public double temperature;
-    public float windDirection;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
-    private int code;
 
     public Station(String name) {
         this.name = name;
@@ -53,7 +51,6 @@ public class Station extends Model {
                 return "Unknown";
         }
     }
-
     public int getBeaufortLabel(double windSpeed) {
         if (windSpeed < 1) {
             return 0;
@@ -125,4 +122,5 @@ public class Station extends Model {
         }
         return direction;
     }
+
 }

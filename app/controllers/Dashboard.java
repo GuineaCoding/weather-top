@@ -10,14 +10,23 @@ public class Dashboard extends Controller
 {
   public static void index()
   {
+    Logger.info("Rendering Admin");
+
     List<Station> stations = Station.findAll();
     render ("dashboard.html", stations);
   }
+  public static void deletePlaylist (Long id)
+  {
+    Station station = Station.findById(id);
+    Logger.info ("Removing" + station.name);
+    station.delete();
+    redirect ("/dashboard");
+  }
   public static void addStation (String title)
   {
-    Station newStation = new Station (title);
-    Logger.info ("Adding a new Station called " + title);
-    newStation.save();
+    Station station = new Station(title);
+    Logger.info ("Adding a new station called " + title);
+    station.save();
     redirect ("/dashboard");
   }
 }
