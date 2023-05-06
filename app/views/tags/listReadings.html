@@ -1,36 +1,33 @@
 <section id="dashboard-box" class="box">
-    #{list items:_station.readings, as:'reading'}
-        <div class="content">
-            <h1 class="title station-title">
-                ${_station.name}
-            </h1>
-            <div class="columns">
-                <div class="column last-reading-column">
-                    <p class="secondary-paragraph">${_station.name}</p>
-                </div>
-                <div class="column last-reading-column">
-                    <p class="secondary-paragraph">Weather</p>
-                    <p class="reading-paragraph">${_station.getLastReading().code}</p>
-                </div>
-                <div class="column last-reading-column">
-                    <p class="secondary-paragraph">Temp</p>
-                    <p class="reading-paragraph">${_station.getLastReading().temperature} °C</p>
-                    <p class="reading-paragraph">${_station.getLastReading().getTemperatureInFahrenheit()} °F</p>
-                </div>
-                <div class="column last-reading-column">
-                    <p class="secondary-paragraph">Wind</p>
-                    <p class="reading-paragraph">${_station.getLastReading().windSpeed} bft</p>
-                    <p class="reading-paragraph">${_station.getLastReading().windDirection}</p>
-                    <p class="reading-paragraph">${_station.getLastReading().getWindChill()}</p>
-                    </p>
-                </div>
-                <div class="column last-reading-column">
-                    <p class="secondary-paragraph">Pressure</p>
-                    <p class="reading-paragraph">${_station.getLastReading().pressure}</p>
-                </div>
+
+    <div class="content">
+        <div class="columns">
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">${_station.name}</p>
             </div>
-            #{/list}
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Weather</p>
+                <p class="reading-paragraph">${_station.getLastReading()?.code ?: 'No readings'}</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Temp</p>
+                <p class="reading-paragraph">${_station.getLastReading()?.temperature ?: 'No readings'} °C</p>
+                <p class="reading-paragraph">${_station.getLastReading()?.getTemperatureInFahrenheit() ?: 'No readings'} °F</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Wind</p>
+                <p class="reading-paragraph">${_station.getLastReading()?.windSpeed ?: 'No readings'} bft</p>
+                <p class="reading-paragraph">${_station.getLastReading()?.windDirection ?: 'No readings'}</p>
+                <p class="reading-paragraph">${_station.getLastReading()?.getWindChill() ?: 'No readings'}</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Pressure</p>
+                <p class="reading-paragraph">${_station.getLastReading()?.pressure ?: 'No readings'}</p>
+            </div>
         </div>
+    </div>
+
+    </div>
     <table id="reading-list" class="ui fixed table">
         <thead>
         <tr>
@@ -39,6 +36,7 @@
             <th>Wind Speed</th>
             <th>Wind Direction</th>
             <th>Pressure</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -49,9 +47,7 @@
             <td>${reading.windSpeed}</td>
             <td>${reading.windDirection}</td>
             <td>${reading.pressure}</td>
-            <td><a href="/stations/${_station.id}/deleteReading/${reading.id}"><span class="icon has-text-danger">
-  <i class="fas fa-trash"></i>
-</span></a></td>
+            <td><a href="/stations/${_station.id}/deleteReading/${reading.id}">Delete</a></td>
         </tr>
         #{/list}
         </tbody>

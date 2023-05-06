@@ -29,6 +29,7 @@ h1 {
     font-size: 20px;
     color: #deef44;
     font-weight: 800;
+    width: 100%;
 }
 
 #reading-list > thead > tr > th {
