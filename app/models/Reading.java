@@ -35,4 +35,26 @@ public class Reading extends Model
         // Convert wind chill back to Celsius
         return windChill;
     }
+    public String getCodeDescription() {
+        switch (this.code) {
+            case 100:
+                return "Clear";
+            case 200:
+                return "Partial clouds";
+            case 300:
+                return "Cloudy";
+            case 400:
+                return "Light Showers";
+            case 500:
+                return "Heav Showers";
+            case 600:
+                return "Rain";
+            case 700:
+                return "Snow";
+            case 800:
+                return "Thunder";
+            default:
+                return "Unknown";
+        }
+    }
 }

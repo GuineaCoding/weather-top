@@ -28,29 +28,6 @@ public class Station extends Model {
             return readings.get(readings.size() - 1);
         }
     }
-
-    public String getCodeDescription(int code) {
-        switch (code) {
-            case 100:
-                return "Clear";
-            case 200:
-                return "Partial clouds";
-            case 300:
-                return "Cloudy";
-            case 400:
-                return "Light Showers";
-            case 500:
-                return "Heav Showers";
-            case 600:
-                return "Rain";
-            case 700:
-                return "Snow";
-            case 800:
-                return "Thunder";
-            default:
-                return "Unknown";
-        }
-    }
     public int getBeaufortLabel(double windSpeed) {
         if (windSpeed < 1) {
             return 0;

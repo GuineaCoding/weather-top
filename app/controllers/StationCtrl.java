@@ -13,17 +13,16 @@ public class StationCtrl extends Controller
         Logger.info ("Station id = " + name);
         render("station.html", station);
     }
-    public static void deleteReading (Long id, Long readingid)
-    {
+    public static void deleteReading(Long id, Long readingid) {
         Station station = Station.findById(id);
         Reading reading = Reading.findById(readingid);
-        Logger.info ("Removing" + reading.id);
-        if (reading != null) {
-        station.readings.remove(reading);
-        station.save();
-        reading.delete();
-        render("station.html", station);
+        if (station != null && reading != null) {
+            Logger.info("Removing" + reading.id);
+            station.readings.remove(reading);
+            station.save();
+            reading.delete();
         }
+        render("station.html", station);
     }
     public static void addReading(Long id, int code, float temperature, float windSpeed, int pressure, float windDirection)
     {
