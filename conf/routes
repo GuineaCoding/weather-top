@@ -14,6 +14,12 @@ GET     /style/style.css                        staticDir:app/style
 POST    /stations/{id}/addReading                 StationCtrl.addReading
 POST    /dashboard/addStation                  Dashboard.addStation
 
+GET    /signup                                  UserAccount.signup
+GET    /login                                   UserAccount.login
+POST   /register                                UserAccount.register
+POST   /authenticate                            UserAccount.authenticate
+GET    /logout                                  UserAccount.logout
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
