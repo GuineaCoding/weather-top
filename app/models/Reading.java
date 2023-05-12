@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 
 import play.db.jpa.Model;
 
+import java.text.DecimalFormat;
+
 @Entity
 public class Reading extends Model
 {
@@ -24,7 +26,7 @@ public class Reading extends Model
     public float getTemperatureInFahrenheit() {
         return (this.temperature * 9/5) + 32;
     }
-    public double getWindChill() {
+    public String getWindChill() {
         // Convert temperature to Celsius
         double tempC = this.temperature;
         // Convert wind speed to meters per second
@@ -33,7 +35,7 @@ public class Reading extends Model
         double windChill = 13.12 + 0.6215 * tempC - 11.37 * Math.pow(windSpeedMps, 0.16)
                 + 0.3965 * tempC * Math.pow(windSpeedMps, 0.16);
         // Convert wind chill back to Celsius
-        return windChill;
+        return new DecimalFormat("#.##").format(windChill);
     }
     public String getCodeDescription() {
         switch (this.code) {

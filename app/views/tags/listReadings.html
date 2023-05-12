@@ -37,7 +37,6 @@
             <th>Wind Speed</th>
             <th>Wind Direction</th>
             <th>Pressure</th>
-            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -48,7 +47,6 @@
             <td>${reading.windSpeed}</td>
             <td>${reading.windDirection}</td>
             <td>${reading.pressure}</td>
-            <td><a href="/stations/${_station.id}/deleteReading/${reading.id}">Delete</a></td>
         </tr>
         #{/list}
         </tbody>

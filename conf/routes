@@ -9,9 +9,7 @@ GET     /about                                  About.index
 GET     /admin                                  Admin.index
 
 GET     /stations/{name}                         StationCtrl.index
-GET     /stations/{id}/deleteReading/{readingid}     StationCtrl.deleteReading
 GET     /style/style.css                        staticDir:app/style
-GET     /dashboard/deletePlaylist/{id}          Dashboard.deletePlaylist
 
 POST    /stations/{id}/addReading                 StationCtrl.addReading
 POST    /dashboard/addStation                  Dashboard.addStation
