@@ -1,9 +1,25 @@
 <section class="content box">
     <form action="/dashboard/addStation" method="POST">
-        <div class="field">
+        <div class="field-label is-normal">
             <label class="label">Station</label>
-            <div class="control">
-                <input class="input" placeholder="Title" type="text" name="title" required>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input class="input" placeholder="Title" type="text" name="title" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="input" placeholder="Latitude" type="number" name="lat" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="input" placeholder="Longitude" type="number" name="lng" required>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="field mt-4">

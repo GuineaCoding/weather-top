@@ -21,7 +21,7 @@ public class UserAccount extends Controller
         Logger.info("Registering new user " + email);
         User member = new User(firstname, lastname, email, password);
         member.save();
-        redirect("/");
+        redirect("/login");
     }
 
     public static void authenticate(String email, String password)

@@ -10,17 +10,24 @@ import play.mvc.Controller;
 public class Dashboard extends Controller {
     public static void index() {
         Logger.info("Rendering Admin");
-
         User member = UserAccount.getLoggedInUser();
-        List<Station> stations = member.stations;
+        List<Station> stations = null;
+        if (member != null) {
+            stations = member.stations;
+        }
         render("dashboard.html", stations);
     }
 
-    public static void addStation(String title) {
-        Station station = new Station(title);
+    public static void addStation(String title, double lat, double lng) {
         Logger.info("Adding a new station called " + title);
-        station.save();
+        User member = UserAccount.getLoggedInUser();
+        if (member != null) {
+            Station station = new Station(title, lat, lng);
+            member.stations.add(station);
+            member.save();
+        }
         redirect("/dashboard");
     }
+
 }
 

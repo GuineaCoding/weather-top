@@ -12,13 +12,17 @@ import play.db.jpa.Model;
 @Entity
 public class Station extends Model {
     public String name;
+    public double lat;
+    public double lng;
 
     public double temperature;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Reading> readings = new ArrayList<Reading>();
 
-    public Station(String name) {
+    public Station(String name, double lat, double lng) {
         this.name = name;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public Reading getLastReading() {
@@ -100,4 +104,85 @@ public class Station extends Model {
         return direction;
     }
 
+    public String getMinTemperature() {
+        if (readings.isEmpty()) {
+            return "No data";
+        } else {
+            double minTemperature = readings.get(0).temperature;
+            for (Reading reading : readings) {
+                if (reading.temperature < minTemperature) {
+                    minTemperature = reading.temperature;
+                }
+            }
+            return Double.toString(minTemperature);
+        }
+    }
+    public String getMaxTemperature() {
+        if (readings.isEmpty()) {
+            return "No data";
+        } else {
+            double maxTemperature = readings.get(0).temperature;
+            for (Reading reading : readings) {
+                if (reading.temperature > maxTemperature) {
+                    maxTemperature = reading.temperature;
+                }
+            }
+            return Double.toString(maxTemperature);
+        }
+    }
+    public String getMinPressure() {
+        if (readings.isEmpty()) {
+            return "No data";
+        } else {
+            double minPressure = readings.get(0).pressure;
+            for (Reading reading : readings) {
+                if (reading.pressure < minPressure) {
+                    minPressure = reading.pressure;
+                }
+            }
+            return Double.toString(minPressure);
+        }
+    }
+
+    public String getMaxPressure() {
+        if (readings.isEmpty()) {
+            return "No data";
+        } else {
+            double maxPressure = readings.get(0).pressure;
+            for (Reading reading : readings) {
+                if (reading.pressure > maxPressure) {
+                    maxPressure = reading.pressure;
+                }
+            }
+            return Double.toString(maxPressure);
+        }
+    }
+
+    public String getMinWindSpeed() {
+        if (readings.isEmpty()) {
+            return "No data";
+        } else {
+            double minWindSpeed = readings.get(0).windSpeed;
+            for (Reading reading : readings) {
+                if (reading.windSpeed < minWindSpeed) {
+                    minWindSpeed = reading.windSpeed;
+                }
+            }
+            return Double.toString(minWindSpeed);
+        }
+    }
+
+    public String getMaxWindSpeed() {
+        if (readings.isEmpty()) {
+            return "No data";
+        } else {
+            double maxWindSpeed = readings.get(0).windSpeed;
+            for (Reading reading : readings) {
+                if (reading.windSpeed > maxWindSpeed) {
+                    maxWindSpeed = reading.windSpeed;
+                }
+            }
+            return Double.toString(maxWindSpeed);
+        }
+    }
 }

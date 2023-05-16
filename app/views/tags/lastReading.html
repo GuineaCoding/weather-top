@@ -1,1 +1,39 @@
+<div class="content">
+    <div class="columns">
+        <div class="column last-reading-column">
+            <p class="secondary-paragraph">${_station.name}</p>
+            <p class="reading-paragraph">Lat: ${_station.lat}</p>
+            <p class="reading-paragraph">Lng: ${_station.lng}</p>
+        </div>
+        <div class="column last-reading-column">
+            <p class="secondary-paragraph">Weather</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.code ?: 'No readings'}</p>
+        </div>
+        <div class="column last-reading-column">
+            <p class="secondary-paragraph">Temp</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.temperature ?: 'No readings'} °C</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.getTemperatureInFahrenheit() ?: 'No readings'}
+                °F</p>
+            <p class="reading-paragraph">Max: ${_station.getMaxTemperature()} °C</p>
+            <p class="reading-paragraph">Min: ${_station.getMinTemperature()} °C</p>
+        </div>
+        <div class="column last-reading-column">
+            <p class="secondary-paragraph">Wind</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.windSpeed ?: 'No readings'} bft</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.getWindDirection() != null ?
+                models.Station.getCompassDirection(_station.getLastReading()?.getWindDirection()) : 'No readings'}</p>
+            <p class="reading-paragraph">Feels Like <br>${_station.getLastReading()?.getWindChill() ?: 'No readings'}
+            </p>
+            <p class="reading-paragraph">${_station.getLastReading()?.getCodeDescription() ?: 'No readings'}</p>
 
+            <p class="reading-paragraph">Max: ${_station.getMaxWindSpeed()}</p>
+            <p class="reading-paragraph">Min: ${_station.getMinWindSpeed()}</p>
+        </div>
+        <div class="column last-reading-column">
+            <p class="secondary-paragraph">Pressure</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.pressure ?: 'No readings'}</p>
+            <p class="reading-paragraph">Max: ${_station.getMaxPressure()}</p>
+            <p class="reading-paragraph">Min: ${_station.getMinPressure()}</p>
+        </div>
+    </div>
+</div>
