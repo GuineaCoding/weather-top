@@ -36,7 +36,7 @@ Station(s2):
   readings:
     - r3
     - r4
-User(m1):
+Member(m1):
   firstname: homer
   lastname: simpson
   email: homer@simpson.com
@@ -45,7 +45,7 @@ User(m1):
     - s1
     - s2
 
-User(m2):
+Member(m2):
   firstname: marge
   lastname: simpson
   email: marge@simpson.com

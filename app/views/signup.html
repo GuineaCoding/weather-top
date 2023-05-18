@@ -5,6 +5,9 @@
 <section class="content box">
     <div class="columns">
         <div class="column is-half">
+            <div class="alert alert-danger" role="alert">
+                ${flash.get("error")}
+            </div>
             <form action="/register" method="POST">
                 <h3 class="subtitle">Register</h3>
                 <div class="field is-horizontal field-body">

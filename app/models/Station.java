@@ -67,128 +67,139 @@ public class Station extends Model {
         return (temperature * 1.8) + 32;
     }
 
-    public static String getCompassDirection(double compassDirection) {
+    public static String getCompassDirection(Double compassDirection) {
         String direction = "";
-        if (compassDirection >= 348.75 || compassDirection < 11.25) {
-            direction = "North";
-        } else if (compassDirection >= 11.25 && compassDirection < 33.75) {
-            direction = "North-Northeast";
-        } else if (compassDirection >= 33.75 && compassDirection < 56.25) {
-            direction = "Northeast";
-        } else if (compassDirection >= 56.25 && compassDirection < 78.75) {
-            direction = "East-Northeast";
-        } else if (compassDirection >= 78.75 && compassDirection < 101.25) {
-            direction = "East";
-        } else if (compassDirection >= 101.25 && compassDirection < 123.75) {
-            direction = "East-Southeast";
-        } else if (compassDirection >= 123.75 && compassDirection < 146.25) {
-            direction = "Southeast";
-        } else if (compassDirection >= 146.25 && compassDirection < 168.75) {
-            direction = "South-Southeast";
-        } else if (compassDirection >= 168.75 && compassDirection < 191.25) {
-            direction = "South";
-        } else if (compassDirection >= 191.25 && compassDirection < 213.75) {
-            direction = "South-Southwest";
-        } else if (compassDirection >= 213.75 && compassDirection < 236.25) {
-            direction = "Southwest";
-        } else if (compassDirection >= 236.25 && compassDirection < 258.75) {
-            direction = "West-Southwest";
-        } else if (compassDirection >= 258.75 && compassDirection < 281.25) {
-            direction = "West";
-        } else if (compassDirection >= 281.25 && compassDirection < 303.75) {
-            direction = "West-Northwest";
-        } else if (compassDirection >= 303.75 && compassDirection < 326.25) {
-            direction = "Northwest";
-        } else if (compassDirection >= 326.25 && compassDirection < 348.75) {
-            direction = "North-Northwest";
+
+        if (compassDirection != null) {
+            if (compassDirection >= 348.75 || compassDirection < 11.25) {
+                direction = "North";
+            } else if (compassDirection >= 11.25 && compassDirection < 33.75) {
+                direction = "North-Northeast";
+            } else if (compassDirection >= 33.75 && compassDirection < 56.25) {
+                direction = "Northeast";
+            } else if (compassDirection >= 56.25 && compassDirection < 78.75) {
+                direction = "East-Northeast";
+            } else if (compassDirection >= 78.75 && compassDirection < 101.25) {
+                direction = "East";
+            } else if (compassDirection >= 101.25 && compassDirection < 123.75) {
+                direction = "East-Southeast";
+            } else if (compassDirection >= 123.75 && compassDirection < 146.25) {
+                direction = "Southeast";
+            } else if (compassDirection >= 146.25 && compassDirection < 168.75) {
+                direction = "South-Southeast";
+            } else if (compassDirection >= 168.75 && compassDirection < 191.25) {
+                direction = "South";
+            } else if (compassDirection >= 191.25 && compassDirection < 213.75) {
+                direction = "South-Southwest";
+            } else if (compassDirection >= 213.75 && compassDirection < 236.25) {
+                direction = "Southwest";
+            } else if (compassDirection >= 236.25 && compassDirection < 258.75) {
+                direction = "West-Southwest";
+            } else if (compassDirection >= 258.75 && compassDirection < 281.25) {
+                direction = "West";
+            } else if (compassDirection >= 281.25 && compassDirection < 303.75) {
+                direction = "West-Northwest";
+            } else if (compassDirection >= 303.75 && compassDirection < 326.25) {
+                direction = "Northwest";
+            } else if (compassDirection >= 326.25 && compassDirection < 348.75) {
+                direction = "North-Northwest";
+            }
         }
         return direction;
+
     }
 
-    public static String getWeatherIcon(int weatherCode) {
-        String iconClass = "fa-solid fa-question";
-        switch (weatherCode) {
-            case 100:
-                iconClass = "fa-solid fa-sun fa-beat";
-                break;
-            case 200:
-                iconClass = "fa-solid fa-cloud-sun fa-beat";
-                break;
-            case 300:
-                iconClass = "fa-solid fa-cloud fa-beat";
-                break;
-            case 400:
-                iconClass = "fa-solid fa-cloud-showers-water fa-beat";
-                break;
-            case 500:
-                iconClass = "fa-solid fa-cloud-showers-heavy fa-beat";
-                break;
-            case 600:
-                iconClass = "fa-solid fa-cloud-rain fa-beat";
-                break;
-            case 700:
-                iconClass = "fa-solid fa-snowflake fa-beat";
-                break;
-            case 800:
-                iconClass = "fa-solid fa-bolt fa-beat";
-                break;
+    public static String getWeatherIcon(Integer weatherCode) {
+        String iconClass = "fa-solid fa-question fa-beat";
+
+        if (weatherCode != null) {
+            switch (weatherCode) {
+                case 100:
+                    iconClass = "fa-solid fa-sun fa-beat";
+                    break;
+                case 200:
+                    iconClass = "fa-solid fa-cloud-sun fa-beat";
+                    break;
+                case 300:
+                    iconClass = "fa-solid fa-cloud fa-beat";
+                    break;
+                case 400:
+                    iconClass = "fa-solid fa-cloud-showers-water fa-beat";
+                    break;
+                case 500:
+                    iconClass = "fa-solid fa-cloud-showers-heavy fa-beat";
+                    break;
+                case 600:
+                    iconClass = "fa-solid fa-cloud-rain fa-beat";
+                    break;
+                case 700:
+                    iconClass = "fa-solid fa-snowflake fa-beat";
+                    break;
+                case 800:
+                    iconClass = "fa-solid fa-bolt fa-beat";
+                    break;
+            }
         }
         return iconClass;
     }
 
-    public static String getTemperatureIcon(double temperature) {
-        String iconClass = "fa-solid fa-sun fa-beat";
-        if (temperature < 0) {
-            iconClass = "fa-solid fa-snowflake fa-beat";
-        } else if (temperature <= 8) {
-            iconClass = "fa-solid fa-thermometer-empty fa-beat";
-        } else if (temperature <= 16) {
-            iconClass = "fa-solid fa-thermometer-quarter fa-beat";
-        } else if (temperature <= 24) {
-            iconClass = "fa-solid fa-thermometer-half fa-beat";
-        } else if (temperature <= 32) {
-            iconClass = "fa-solid fa-thermometer-three-quarters fa-beat";
+
+    public static String getTemperatureIcon(Double temperature) {
+        String iconClass = "fa-solid fa-question fa-beat";
+        if (temperature != null) {
+            if (temperature < 0) {
+                iconClass = "fa-solid fa-thermometer-empty fa-beat";
+            } else if (temperature >= 0 && temperature < 10) {
+                iconClass = "fa-solid fa-thermometer-quarter fa-beat";
+            } else if (temperature >= 10 && temperature < 20) {
+                iconClass = "fa-solid fa-thermometer-half fa-beat";
+            } else if (temperature >= 20 && temperature < 30) {
+                iconClass = "fa-solid fa-thermometer-three-quarters fa-beat";
+            } else if (temperature >= 30) {
+                iconClass = "fa-solid fa-thermometer-full fa-beat";
+            }
         }
+
         return iconClass;
     }
 
-    public static String getCompassDirectionWithIcon(double compassDirection) {
-        String directionIcon = "";
-
-        if (compassDirection >= 348.75 || compassDirection < 11.25) {
-            directionIcon = "fa-solid fa-arrow-up rotate-360";
-        } else if (compassDirection >= 11.25 && compassDirection < 33.75) {
-            directionIcon = "fa-solid fa-arrow-up rotate-33";
-        } else if (compassDirection >= 33.75 && compassDirection < 56.25) {
-            directionIcon = "fa-solid fa-arrow-right rotate-45";
-        } else if (compassDirection >= 56.25 && compassDirection < 78.75) {
-            directionIcon = "fa-solid fa-arrow-down rotate-75";
-        } else if (compassDirection >= 78.75 && compassDirection < 101.25) {
-            directionIcon = "fa-solid fa-arrow-down rotate-90";
-        } else if (compassDirection >= 101.25 && compassDirection < 123.75) {
-            directionIcon = "fa-solid fa-arrow-down rotate-115";
-        } else if (compassDirection >= 123.75 && compassDirection < 146.25) {
-            directionIcon = "fa-solid fa-arrow-left rotate-135";
-        } else if (compassDirection >= 146.25 && compassDirection < 168.75) {
-            directionIcon = "fa-solid fa-arrow-up rotate-155";
-        } else if (compassDirection >= 168.75 && compassDirection < 191.25) {
-            directionIcon = "fa-solid fa-arrow-up rotate-180";
-        } else if (compassDirection >= 191.25 && compassDirection < 213.75) {
-            directionIcon = "fa-solid fa-arrow-up rotate-210";
-        } else if (compassDirection >= 213.75 && compassDirection < 236.25) {
-            directionIcon = "fa-solid fa-arrow-right rotate-225";
-        } else if (compassDirection >= 236.25 && compassDirection < 258.75) {
-            directionIcon = "fa-solid fa-arrow-down rotate-250";
-        } else if (compassDirection >= 258.75 && compassDirection < 281.25) {
-            directionIcon = "fa-solid fa-arrow-down rotate-270";
-        } else if (compassDirection >= 281.25 && compassDirection < 303.75) {
-            directionIcon = "fa-solid fa-arrow-down rotate-300";
-        } else if (compassDirection >= 303.75 && compassDirection < 326.25) {
-            directionIcon = "fa-solid fa-arrow-left rotate-315";
-        } else if (compassDirection >= 326.25 && compassDirection < 348.75) {
-            directionIcon = "fa-solid fa-arrow-up rotate-340";
+    public static String getCompassDirectionWithIcon(Double compassDirection) {
+        String directionIcon = "fa-solid fa-question fa-beat";
+        if (compassDirection != null) {
+            if (compassDirection >= 348.75 || compassDirection < 11.25) {
+                directionIcon = "fa-solid fa-arrow-up rotate-360";
+            } else if (compassDirection >= 11.25 && compassDirection < 33.75) {
+                directionIcon = "fa-solid fa-arrow-up rotate-33";
+            } else if (compassDirection >= 33.75 && compassDirection < 56.25) {
+                directionIcon = "fa-solid fa-arrow-right rotate-45";
+            } else if (compassDirection >= 56.25 && compassDirection < 78.75) {
+                directionIcon = "fa-solid fa-arrow-down rotate-75";
+            } else if (compassDirection >= 78.75 && compassDirection < 101.25) {
+                directionIcon = "fa-solid fa-arrow-down rotate-90";
+            } else if (compassDirection >= 101.25 && compassDirection < 123.75) {
+                directionIcon = "fa-solid fa-arrow-down rotate-115";
+            } else if (compassDirection >= 123.75 && compassDirection < 146.25) {
+                directionIcon = "fa-solid fa-arrow-left rotate-135";
+            } else if (compassDirection >= 146.25 && compassDirection < 168.75) {
+                directionIcon = "fa-solid fa-arrow-up rotate-155";
+            } else if (compassDirection >= 168.75 && compassDirection < 191.25) {
+                directionIcon = "fa-solid fa-arrow-up rotate-180";
+            } else if (compassDirection >= 191.25 && compassDirection < 213.75) {
+                directionIcon = "fa-solid fa-arrow-up rotate-210";
+            } else if (compassDirection >= 213.75 && compassDirection < 236.25) {
+                directionIcon = "fa-solid fa-arrow-right rotate-225";
+            } else if (compassDirection >= 236.25 && compassDirection < 258.75) {
+                directionIcon = "fa-solid fa-arrow-down rotate-250";
+            } else if (compassDirection >= 258.75 && compassDirection < 281.25) {
+                directionIcon = "fa-solid fa-arrow-down rotate-270";
+            } else if (compassDirection >= 281.25 && compassDirection < 303.75) {
+                directionIcon = "fa-solid fa-arrow-down rotate-300";
+            } else if (compassDirection >= 303.75 && compassDirection < 326.25) {
+                directionIcon = "fa-solid fa-arrow-left rotate-315";
+            } else if (compassDirection >= 326.25 && compassDirection < 348.75) {
+                directionIcon = "fa-solid fa-arrow-up rotate-340";
+            }
         }
-
         return directionIcon + " rotate-" + compassDirection;
     }
 
