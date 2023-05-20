@@ -328,7 +328,7 @@ public class Station extends Model {
         if (readings.isEmpty()) {
             return "No data";
         } else {
-            double maxWindSpeed = readings.get(0).windSpeed; // Initialize maxWindSpeed with the first reading's wind speed
+            float maxWindSpeed = readings.get(0).windSpeed; // Initialize maxWindSpeed with the first reading's wind speed
             for (Reading reading : readings) {
                 if (reading.windSpeed > maxWindSpeed) {
                     maxWindSpeed = reading.windSpeed; // Update maxWindSpeed if a higher wind speed is found

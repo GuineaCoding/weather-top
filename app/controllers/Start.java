@@ -11,7 +11,7 @@ public class Start extends Controller {
         // Check if a session is in place and user is logged
         if (UserAccount.isSessionInPlace()) {
             // If a session is in place, render the "dashboard.html" template
-            render("dashboard.html");
+            render("frontPage.html");
         } else {
             // If no session is in place, render the "start.html" template
             render("start.html");

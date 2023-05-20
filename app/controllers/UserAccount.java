@@ -20,8 +20,20 @@ public class UserAccount extends Controller {
         // Check if a member with the same email already exists
         Member existingMember = Member.findByEmail(email);
         if (existingMember != null) {
-            // Display an error message using flash and redirect back to the signup page
+            // Display an error message if email is wrong format redirect back to the signup page
             flash.error("Email already registered. Please choose a different email.");
+            redirect("/signup");
+        }
+
+        // Validate the input values
+        if (!isValidInput(firstname, lastname)) {
+            // Display an error if name or lastname is not valid and redirect back to the signup page
+            flash.error("Make sure that First Name or Last Name don't contain alphanumeric characters.");
+            redirect("/signup");
+        }
+        if (!isValidEmailFormat(email)) {
+            // Display an error message using flash and redirect back to the signup page
+            flash.error("Invalid Email, please choose a correct one.");
             redirect("/signup");
         }
 
@@ -32,6 +44,32 @@ public class UserAccount extends Controller {
         // Redirect to the login page after successful registration
         redirect("/login");
     }
+
+    private static boolean isValidInput(String firstname, String lastname) {
+        // Checking if if the name fields are not empty and contain only letters
+        // Return true input these are valid, otherwise return false
+        return !firstname.isEmpty() && !lastname.isEmpty() && isAlphaOnly(firstname) && isAlphaOnly(lastname);
+    }
+
+    private static boolean isValidEmailFormat(String email) {
+        // Checking if the email is not empty and is in a valid format
+        // Return true if the email is valid, otherwise return false
+        return !email.isEmpty() && isValidEmail(email);
+    }
+
+    private static boolean isAlphaOnly(String value) {
+        // Checking if the value contains only letters
+        // Return true if the value contains only letters, otherwise return false
+        return value.matches("[a-zA-Z]+");
+    }
+
+    private static boolean isValidEmail(String email) {
+        // Added email validation logic. Return true if the email is valid, otherwise return false
+
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(emailRegex);
+    }
+
 
     public static void authenticate(String email, String password) {
         // Log the authentication attempt with the provided email and password
@@ -62,7 +100,7 @@ public class UserAccount extends Controller {
     public static Member getLoggedInUser() {
         Member member = null;
         if (isSessionInPlace()) {
-            // Retrieve the logged-in member's ID from the session
+            // Retrieve the logged-in member's id from the session
             String memberId = session.get("logged_in_MemberId");
             // Find the member by the ID
             member = Member.findById(Long.parseLong(memberId));

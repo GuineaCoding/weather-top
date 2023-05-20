@@ -11,7 +11,7 @@ public class Reading extends Model
 {
     public int code;
     public float temperature;
-    public double windSpeed;
+    public float windSpeed;
     public int pressure;
     public float windDirection;
 

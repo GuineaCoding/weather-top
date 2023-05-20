@@ -9,7 +9,7 @@ GET     /about                                  About.index
 GET     /admin                                  Admin.index
 
 GET     /stations/{name}                         StationCtrl.index
-GET     /style/style.css                        staticDir:app/style
+GET     /style/style.css                        staticDir:/app/style/
 
 POST    /stations/{id}/addReading                 StationCtrl.addReading
 POST    /dashboard/addStation                  Dashboard.addStation
