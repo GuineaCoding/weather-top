@@ -3,6 +3,15 @@ p {
     color: #F5F5F5;
 }
 
+.heading-paragraph {
+    color: #deef44;
+    font-size: 30px;
+    font-weight: bold;
+}
+#main-page {
+    min-height: 500px;
+}
+
 h1 {
     color: #008080 !important;
 }
@@ -65,6 +74,10 @@ h1 {
 .menu-section {
     padding: 10px;
     background-color: #008080;
+}
+
+.buttonColor {
+    background-color: #008080 !important;
 }
 
 .navbar-section {

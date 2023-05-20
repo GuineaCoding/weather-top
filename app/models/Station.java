@@ -1,5 +1,6 @@
 package models;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,10 @@ public class Station extends Model {
         this.lng = lng;
     }
 
+    /**
+     * Get the last reading from the list of readings.
+     * return The last reading or null if the list is empty.
+     */
     public Reading getLastReading() {
         if (readings.isEmpty()) {
             return null;
@@ -33,6 +38,10 @@ public class Station extends Model {
         }
     }
 
+    /**
+     * Get the Beaufort scale label based on the  wind speed parameter.
+     * return The Beaufort scale label as an integer.
+     */
     public int getBeaufortLabel(double windSpeed) {
         if (windSpeed < 1) {
             return 0;
@@ -63,10 +72,12 @@ public class Station extends Model {
         }
     }
 
+    // Convert the temperature from Celsius to Fahrenheit. Return The temperature in Fahrenheit.
     public double getFahrenheit() {
         return (temperature * 1.8) + 32;
     }
 
+    //Get the compass direction based on the compass direction in degrees. Return The compass direction as a string.
     public static String getCompassDirection(Double compassDirection) {
         String direction = "";
 
@@ -109,6 +120,10 @@ public class Station extends Model {
 
     }
 
+    /**
+     * Get the weather icon class based on the weather code. Returning The weather icon class as a string which later is
+     * added in the html.
+     */
     public static String getWeatherIcon(Integer weatherCode) {
         String iconClass = "fa-solid fa-question fa-beat";
 
@@ -143,7 +158,10 @@ public class Station extends Model {
         return iconClass;
     }
 
-
+    /**
+     * Get the temperature icon class based on the temperature value.
+     * The temperature icon class as a string which is added further in the html.
+     */
     public static String getTemperatureIcon(Double temperature) {
         String iconClass = "fa-solid fa-question fa-beat";
         if (temperature != null) {
@@ -163,6 +181,10 @@ public class Station extends Model {
         return iconClass;
     }
 
+    /**
+     * Get the  icon class with rotation based on the compass direction value.
+     * The compass direction class is as a string which is added further in the html.
+     */
     public static String getCompassDirectionWithIcon(Double compassDirection) {
         String directionIcon = "fa-solid fa-question fa-beat";
         if (compassDirection != null) {
@@ -203,87 +225,117 @@ public class Station extends Model {
         return directionIcon + " rotate-" + compassDirection;
     }
 
+    /**
+     * Get the minimum temperature recorded among the readings.
+     *
+     * @return The minimum temperature as a formatted string or "No data" if readings are empty.
+     */
     public String getMinTemperature() {
         if (readings.isEmpty()) {
             return "No data";
         } else {
-            double minTemperature = readings.get(0).temperature;
+            double minTemperature = readings.get(0).temperature; // Initialize minTemperature with the first reading's temperature
             for (Reading reading : readings) {
                 if (reading.temperature < minTemperature) {
-                    minTemperature = reading.temperature;
+                    minTemperature = reading.temperature; // Update minTemperature if a lower temperature is found
                 }
             }
-            return Double.toString(minTemperature);
+            DecimalFormat decimalFormat = new DecimalFormat("#.##"); // Format the temperature to two decimal places
+            return decimalFormat.format(minTemperature);
         }
     }
 
+    /**
+     * Get the maximum temperature recorded among the readings.
+     *
+     * @return The maximum temperature as a formatted string or "No data" if readings are empty.
+     */
     public String getMaxTemperature() {
         if (readings.isEmpty()) {
             return "No data";
         } else {
-            double maxTemperature = readings.get(0).temperature;
+            double maxTemperature = readings.get(0).temperature; // Initialize maxTemperature with the first reading's temperature
             for (Reading reading : readings) {
                 if (reading.temperature > maxTemperature) {
-                    maxTemperature = reading.temperature;
+                    maxTemperature = reading.temperature; // Update maxTemperature if a higher temperature is found
                 }
             }
-            return Double.toString(maxTemperature);
+            DecimalFormat decimalFormat = new DecimalFormat("#.##"); // Format the temperature to two decimal places
+            return decimalFormat.format(maxTemperature);
         }
     }
 
+    /**
+     * Get the minimum pressure recorded among the readings.
+     * Return the minimum pressure as a string or "No data" if readings are empty.
+     */
     public String getMinPressure() {
         if (readings.isEmpty()) {
             return "No data";
         } else {
-            double minPressure = readings.get(0).pressure;
+            double minPressure = readings.get(0).pressure; // Initialize minPressure with the first reading's pressure
             for (Reading reading : readings) {
                 if (reading.pressure < minPressure) {
-                    minPressure = reading.pressure;
+                    minPressure = reading.pressure; // Update minPressure if a lower pressure is found
                 }
             }
             return Double.toString(minPressure);
         }
     }
 
+    /**
+     * Get the maximum pressure recorded among the readings.
+     * @return The maximum pressure as a string or "No data" if readings are empty.
+     */
     public String getMaxPressure() {
         if (readings.isEmpty()) {
             return "No data";
         } else {
-            double maxPressure = readings.get(0).pressure;
+            double maxPressure = readings.get(0).pressure; // Initialize maxPressure with the first reading's pressure
             for (Reading reading : readings) {
                 if (reading.pressure > maxPressure) {
-                    maxPressure = reading.pressure;
+                    maxPressure = reading.pressure; // Update maxPressure if a higher pressure is found
                 }
             }
             return Double.toString(maxPressure);
         }
     }
 
+    /**
+     * Get the minimum wind speed recorded among the readings.
+     * @return The minimum wind speed as a formatted string or "No data" if readings are empty.
+     */
     public String getMinWindSpeed() {
         if (readings.isEmpty()) {
             return "No data";
         } else {
-            double minWindSpeed = readings.get(0).windSpeed;
+            double minWindSpeed = readings.get(0).windSpeed; // Initialize minWindSpeed with the first reading's wind speed
             for (Reading reading : readings) {
                 if (reading.windSpeed < minWindSpeed) {
-                    minWindSpeed = reading.windSpeed;
+                    minWindSpeed = reading.windSpeed; // Update minWindSpeed if a lower wind speed is found
                 }
             }
-            return Double.toString(minWindSpeed);
+            DecimalFormat decimalFormat = new DecimalFormat("#.##"); // Format the wind speed to two decimal places
+            return decimalFormat.format(minWindSpeed);
         }
     }
 
+    /**
+     * Get the maximum wind speed recorded among the readings.
+     * @return The maximum wind speed as a formatted string or "No data" if readings are empty.
+     */
     public String getMaxWindSpeed() {
         if (readings.isEmpty()) {
             return "No data";
         } else {
-            double maxWindSpeed = readings.get(0).windSpeed;
+            double maxWindSpeed = readings.get(0).windSpeed; // Initialize maxWindSpeed with the first reading's wind speed
             for (Reading reading : readings) {
                 if (reading.windSpeed > maxWindSpeed) {
-                    maxWindSpeed = reading.windSpeed;
+                    maxWindSpeed = reading.windSpeed; // Update maxWindSpeed if a higher wind speed is found
                 }
             }
-            return Double.toString(maxWindSpeed);
+            DecimalFormat decimalFormat = new DecimalFormat("#.##"); // Format the wind speed to two decimal places
+            return decimalFormat.format(maxWindSpeed);
         }
     }
 }

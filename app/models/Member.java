@@ -19,6 +19,7 @@ public class Member extends Model {
     public List<Station> stations = new ArrayList<Station>();
 
     public Member(String firstname, String lastname, String email, String password) {
+        // Initialize the Member object with provided details
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -26,10 +27,12 @@ public class Member extends Model {
     }
 
     public static Member findByEmail(String email) {
+        // Find a Member by email using the JPA query
         return find("email", email).first();
     }
 
     public boolean checkPassword(String password) {
+        // Check if the provided password matches the Member's password
         return this.password.equals(password);
     }
 }

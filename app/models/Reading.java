@@ -24,7 +24,8 @@ public class Reading extends Model
         this.windDirection = windDirection;
     }
     public float getTemperatureInFahrenheit() {
-        return (this.temperature * 9/5) + 32;
+        float temperatureInFahrenheit = this.temperature * 9/5 + 32;
+        return Float.parseFloat(new DecimalFormat("#.##").format(temperatureInFahrenheit));
     }
     public String getWindChill() {
         // Convert temperature to Celsius
