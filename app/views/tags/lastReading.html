@@ -9,6 +9,7 @@
             <p class="secondary-paragraph">Weather <i
                     class="${models.Station.getWeatherIcon(_station.getLastReading()?.code)}"></i></p>
             <p class="reading-paragraph">Code: ${_station.getLastReading()?.code ?: 'No readings'}</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.getCodeDescription() ?: 'No readings'}</p>
         </div>
         <div class="column last-reading-column">
             <p class="secondary-paragraph">Temp <i
