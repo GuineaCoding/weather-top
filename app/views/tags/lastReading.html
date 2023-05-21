@@ -15,7 +15,8 @@
             <p class="secondary-paragraph">Temp <i
                     class="${models.Station.getTemperatureIcon(_station.getLastReading()?.temperature)}"></i></p>
 
-            <p class="reading-paragraph">${_station.getLastReading()?.temperature ?: 'No readings'} °C</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.temperature != null ? (_station.getLastReading().temperature != 0 ? _station.getLastReading().temperature : '0') : 'No readings'} °C</p>
+
             <p class="reading-paragraph">${_station.getLastReading()?.getTemperatureInFahrenheit() ?: 'No readings'}
                 °F</p>
             <p class="reading-paragraph">Max: ${_station.getMaxTemperature()} °C</p>
@@ -24,7 +25,7 @@
         </div>
         <div class="column last-reading-column">
             <p class="secondary-paragraph">Wind <i class="fa-solid fa-wind fa-beat"></i></p>
-            <p class="reading-paragraph">${_station.getLastReading()?.windSpeed ?: 'No readings'} bft</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.windSpeed != null ? (_station.getLastReading().windSpeed != 0 ? _station.getLastReading().windSpeed : '0') : 'No readings'} bft</p>
 
             <p class="reading-paragraph">
                 ${models.Station.getCompassDirection(_station.getLastReading()?.getWindDirection()) ?: 'No readings'}
@@ -38,7 +39,7 @@
         </div>
         <div class="column last-reading-column">
             <p class="secondary-paragraph">Pressure <i class="fa-solid fa-minimize fa-beat"></i></p>
-            <p class="reading-paragraph">${_station.getLastReading()?.pressure ?: 'No readings'} hpa</p>
+            <p class="reading-paragraph">${_station.getLastReading()?.pressure != null ? _station.getLastReading().pressure : 'No readings'} hpa</p>
             <p class="reading-paragraph">Max: ${_station.getMaxPressure()}</p>
             <p class="reading-paragraph">Min: ${_station.getMinPressure()}</p>
             <p class="reading-paragraph">Trend: <i class="${_station.getLastPressureTrend()}"></i></p>

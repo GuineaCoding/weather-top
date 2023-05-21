@@ -25,9 +25,7 @@ public class UserAccount extends Controller {
         Member member = getLoggedInUser();
 
         if (member == null) {
-            // Handle the case when the member is not found or not logged in
-            // You can redirect to a login page or display an error message
-            // For example:
+            // Check the case when the member is not found or not logged in
             flash.error("Please log in to edit your account.");
             redirect("/login");
         }
