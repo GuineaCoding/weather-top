@@ -28,6 +28,7 @@
                     °F</p>
                 <p class="reading-paragraph">Max: ${station.getMaxTemperature()} °C</p>
                 <p class="reading-paragraph">Min: ${station.getMinTemperature()} °C</p>
+                <p class="reading-paragraph">Trend: <i class="${station.getLastTemperatureTrend()}"></i></p>
             </div>
             <div class="column last-reading-column">
                 <p class="secondary-paragraph">Wind <i class="fa-solid fa-wind fa-beat"></i></p>
@@ -41,21 +42,31 @@
                 </p>
                 <p class="reading-paragraph">Max: ${station.getMaxWindSpeed()}</p>
                 <p class="reading-paragraph">Min: ${station.getMinWindSpeed()}</p>
+                <p class="reading-paragraph">Trend: <i class="${station.getLastWindSpeedTrend()}"></i></p>
             </div>
             <div class="column last-reading-column">
                 <p class="secondary-paragraph">Pressure <i class="fa-solid fa-minimize fa-beat"></i></p>
                 <p class="reading-paragraph">${station.getLastReading()?.pressure ?: 'No readings'} hpa</p>
                 <p class="reading-paragraph">Max: ${station.getMaxPressure()}</p>
                 <p class="reading-paragraph">Min: ${station.getMinPressure()}</p>
+                <p class="reading-paragraph">Trend: <i class="${station.getLastPressureTrend()}"></i></p>
             </div>
         </div>
     </div>
-    <a href="/stations/${station.id}" class="icon has-text-primary">
+    <a href="/stations/${station.id}" class="button is-half">
+        <span class="button-text">Open Station</span>
+        <span class="icon has-text-primary">
         <i class="fas fa-folder"></i>
+    </span>
     </a>
-    <a href="/dashboard/deleteStation/${station.id}" class="icon has-text-danger">
+
+    <a href="/dashboard/deleteStation/${station.id}" class="button is-half">
+        <span class="button-text has-text-danger">Delete Station</span>
+        <span class="icon has-text-danger">
         <i class="fas fa-trash"></i>
+    </span>
     </a>
+
 </div>
 #{/list}
 

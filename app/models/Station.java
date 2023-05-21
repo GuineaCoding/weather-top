@@ -345,71 +345,67 @@ public class Station extends Model {
     public String getLastWindSpeedTrend() {
         int numReadings = readings.size();
         if (numReadings >= 3) {
+            //getting the last three readings
             Reading previousReading = readings.get(numReadings - 3);
             Reading middleReading = readings.get(numReadings - 2);
             Reading latestReading = readings.get(numReadings - 1);
 
+            //getting  the windSpeed
             float previousWindSpeed = previousReading.windSpeed;
             float middleWindSpeed = middleReading.windSpeed;
             float latestWindSpeed = latestReading.windSpeed;
 
+            //determining the windSpeed trend
             if (latestWindSpeed > middleWindSpeed && middleWindSpeed > previousWindSpeed) {
-                return "fa-solid fa-arrow-up fa-beat";
+                return "fa-solid fa-arrow-up fa-beat"; //arrow-up if trend is increasing
             }
             if (latestWindSpeed < middleWindSpeed && middleWindSpeed < previousWindSpeed) {
-                return "fa-solid fa-arrow-down fa-beat";
-            } else {
-                return "fa-solid fa-equals fa-beat";
+                return "fa-solid fa-arrow-down fa-beat"; //arrow-down if trend is decreasing
             }
-        } else {
-            return "fa-solid fa-equals fa-beat";
         }
+        return "fa-solid fa-equals fa-beat"; //equal sign if the trend is steady or none of the above
     }
 
     public String getLastTemperatureTrend() {
         int numReadings = readings.size();
         if (numReadings >= 3) {
+            //getting the last three readings
             Reading previousReading = readings.get(numReadings - 3);
             Reading middleReading = readings.get(numReadings - 2);
             Reading latestReading = readings.get(numReadings - 1);
-
+            //getting  the temperature
             float previousTemperature = previousReading.temperature;
             float middleTemperature = middleReading.temperature;
             float latestTemperature = latestReading.temperature;
-
+            //determining the temperature trend
             if (latestTemperature > middleTemperature && middleTemperature > previousTemperature) {
-                return "fa-solid fa-arrow-up fa-beat";
+                return "fa-solid fa-arrow-up fa-beat"; //arrow-up if trend is increasing
             } else if (latestTemperature < middleTemperature && middleTemperature < previousTemperature) {
-                return "fa-solid fa-arrow-down fa-beat";
-            } else {
-                return "fa-solid fa-equals fa-beat";
+                return "fa-solid fa-arrow-down fa-beat"; //arrow-down if trend is decreasing
             }
-        } else {
-            return "fa-solid fa-equals fa-beat";
         }
+        return "fa-solid fa-equals fa-beat"; //equal sign if the trend is steady or none of the above
     }
 
     public String getLastPressureTrend() {
         int numReadings = readings.size();
         if (numReadings >= 3) {
+            //getting the last three readings
             Reading previousReading = readings.get(numReadings - 3);
             Reading middleReading = readings.get(numReadings - 2);
             Reading latestReading = readings.get(numReadings - 1);
-
+            //getting  the pressure
             float previousPressure = previousReading.pressure;
             float middlePressure = middleReading.pressure;
             float latestPressure = latestReading.pressure;
-
+            //determining the pressure trend
             if (latestPressure > middlePressure && middlePressure > previousPressure) {
-                return "fa-solid fa-arrow-up fa-beat";
+                return "fa-solid fa-arrow-up fa-beat"; //arrow-up if trend is increasing
             } else if (latestPressure < middlePressure && middlePressure < previousPressure) {
-                return "fa-solid fa-arrow-down fa-beat";
-            } else {
-                return "fa-solid fa-equals fa-beat";
+                return "fa-solid fa-arrow-down fa-beat"; //arrow-down if trend is decreasing
             }
-        } else {
-            return "fa-solid fa-equals fa-beat";
         }
+        return "fa-solid fa-equals fa-beat"; //equal sign if the trend is steady or none of the above
     }
 
 }

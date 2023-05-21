@@ -65,7 +65,7 @@ public class Dashboard extends Controller {
                 member.save();
             } else {
                 // Redirect the user back to the dashboard page with an error message
-                flash.error("Invalid input values");
+                flash.error("Please add correct latitude and Longitude details");
                 redirect("/dashboard");
                 return;
             }

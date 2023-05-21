@@ -19,7 +19,7 @@
                 °F</p>
             <p class="reading-paragraph">Max: ${_station.getMaxTemperature()} °C</p>
             <p class="reading-paragraph">Min: ${_station.getMinTemperature()} °C</p>
-            <i class="${_station.getLastTemperatureTrend()}"></i>
+            <p class="reading-paragraph">Trend: <i class="${_station.getLastTemperatureTrend()}"></i></p>
         </div>
         <div class="column last-reading-column">
             <p class="secondary-paragraph">Wind <i class="fa-solid fa-wind fa-beat"></i></p>
@@ -33,15 +33,14 @@
             </p>
             <p class="reading-paragraph">Max: ${_station.getMaxWindSpeed()}</p>
             <p class="reading-paragraph">Min: ${_station.getMinWindSpeed()}</p>
-            <i class="${_station.getLastWindSpeedTrend()}"></i>
-
+            <p class="reading-paragraph">Trend: <i class="${_station.getLastWindSpeedTrend()}"></i></p>
         </div>
         <div class="column last-reading-column">
             <p class="secondary-paragraph">Pressure <i class="fa-solid fa-minimize fa-beat"></i></p>
             <p class="reading-paragraph">${_station.getLastReading()?.pressure ?: 'No readings'} hpa</p>
             <p class="reading-paragraph">Max: ${_station.getMaxPressure()}</p>
             <p class="reading-paragraph">Min: ${_station.getMinPressure()}</p>
-            <i class="${_station.getLastPressureTrend()}"></i>
+            <p class="reading-paragraph">Trend: <i class="${_station.getLastPressureTrend()}"></i></p>
         </div>
     </div>
 </div>

@@ -128,7 +128,7 @@ public class UserAccount extends Controller {
     private static boolean isValidEmail(String email) {
         // Added email validation logic. Return true if the email is valid, otherwise return false
 
-        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]+$";
         return email.matches(emailRegex);
     }
 
