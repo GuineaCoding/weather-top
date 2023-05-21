@@ -13,6 +13,68 @@ public class UserAccount extends Controller {
         render("login.html");
     }
 
+    public static void loadAccountData() {
+        // Get the logged-in member data
+        Member member = getLoggedInUser();
+
+        // Render the editDetails view with the member data
+        render("editDetails.html", member);
+    }
+    public static void changeData(String firstName, String lastName, String email, String newPassword, String confirmPassword) {
+        // Get the logged-in member
+        Member member = getLoggedInUser();
+
+        if (member == null) {
+            // Handle the case when the member is not found or not logged in
+            // You can redirect to a login page or display an error message
+            // For example:
+            flash.error("Please log in to edit your account.");
+            redirect("/login");
+        }
+
+        // Validate the input values
+        if (!isValidInput(firstName, lastName)) {
+            // Display an error if the first name or last name is not valid and redirect back to the edit page
+            flash.error("Make sure that First Name and Last Name don't contain alphanumeric characters.");
+            loadAccountData();
+        }
+
+        if (!isValidEmailFormat(email)) {
+            // Display an error message if the email format is invalid and redirect back to the edit page
+            flash.error("Invalid Email, please choose a correct one.");
+            loadAccountData();
+        }
+
+        Member existingMember = Member.findByEmail(email);
+        if (existingMember != null && !existingMember.equals(member)) {
+            // Display an error message if the email is already registered to another member
+            flash.error("Email already registered. Please choose a different email.");
+            loadAccountData();
+        }
+
+        // Update the member's fields with the new values
+        member.setFirstname(firstName);
+        member.setLastname(lastName);
+        member.setEmail(email);
+        member.setPassword(newPassword);
+        // Update the password if a new password is provided
+        if (!newPassword.isEmpty() && !newPassword.equals(confirmPassword)) {
+            // Display an error message if the passwords don't match and redirect back to the edit page
+            flash.error("Passwords do not match.");
+
+            loadAccountData();
+        }
+
+        // Save the updated member
+        member.save();
+
+        // Redirect to a success page or display a success message
+        flash.success("Account details updated successfully.");
+        redirect("/dashboard");
+    }
+
+
+
     public static void register(String firstname, String lastname, String email, String password) {
         // Log the registration attempt with the provided email
         Logger.info("Registering new user " + email);
@@ -69,7 +131,6 @@ public class UserAccount extends Controller {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return email.matches(emailRegex);
     }
-
 
     public static void authenticate(String email, String password) {
         // Log the authentication attempt with the provided email and password

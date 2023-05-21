@@ -1,9 +1,9 @@
 package models;
 
 import javax.persistence.Entity;
-
+import java.util.Date;
 import play.db.jpa.Model;
-
+import java.text.SimpleDateFormat;
 import java.text.DecimalFormat;
 
 @Entity
@@ -14,15 +14,27 @@ public class Reading extends Model
     public float windSpeed;
     public int pressure;
     public float windDirection;
+    public Date date;
 
-    public Reading(int code, float temperature, float windSpeed, int pressure, float windDirection)
+
+    public Reading(int code, float temperature, float windSpeed, int pressure, float windDirection, Date date)
     {
         this.code = code;
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.pressure = pressure;
         this.windDirection = windDirection;
+        this.date = new Date();
     }
+    public String getFormattedDate() {
+        if (date != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return dateFormat.format(date);
+        } else {
+            return ""; // or handle the null case appropriately
+        }
+    }
+
     public float getTemperatureInFahrenheit() {
         float temperatureInFahrenheit = this.temperature * 9/5 + 32;
         return Float.parseFloat(new DecimalFormat("#.##").format(temperatureInFahrenheit));
@@ -59,5 +71,8 @@ public class Reading extends Model
             default:
                 return "Unknown";
         }
+    }
+    public float getWindSpeed() {
+        return windSpeed;
     }
 }

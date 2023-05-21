@@ -1,7 +1,8 @@
 package controllers;
 
 import java.util.List;
-
+import java.util.Collections;
+import java.util.Comparator;
 import models.Member;
 import models.Station;
 import play.Logger;
@@ -12,20 +13,29 @@ public class Dashboard extends Controller {
         // Log a message to indicate that the "dashboard" page is being rendered
         Logger.info("Rendering Admin");
 
-        // Get the logged-in member
+        // get the logged-in member
         Member member = UserAccount.getLoggedInUser();
 
-        // Initialize the list of stations
+        // initialize the list of stations
         List<Station> stations = null;
 
-        // Check if a member is logged in
+        // check if a member is logged in
         if (member != null) {
             // Assign the member's stations to the "stations" list
             stations = member.stations;
+
+            // sort the stations alphabetically
+            stations.sort(new Comparator<Station>() {
+                public int compare(Station station1, Station station2) {
+                    return station1.name.compareToIgnoreCase(station2.name);
+                }
+            });
         }
-        // Render the "dashboard.html" template and pass the "stations" list as a parameter
+
+        // render the "dashboard.html" and passing the "stations" list as a parameter
         render("dashboard.html", stations);
     }
+
     public static void addStation(String title, double lat, double lng) {
         // Log a message to indicate that a new station is being added
         Logger.info("Adding a new station called " + title);
@@ -89,6 +99,17 @@ public class Dashboard extends Controller {
         return false; // Station name does not exist
     }
 
-
+    public static void deleteStation(Long id) {
+        //getting the logged user
+        Member member = UserAccount.getLoggedInUser();
+        Logger.info("Deleting a Station");
+        //finding the station id
+        Station station = Station.findById(id);
+        //delete station
+        member.stations.remove(station);
+        member.save();
+        station.delete();
+        redirect("/dashboard");
+    }
 }
 

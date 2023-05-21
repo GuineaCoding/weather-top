@@ -7,10 +7,57 @@
     <h1 class="title">
         ${station.name}
     </h1>
+    <div class="content lastreading">
+        <div class="columns">
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">${station.name} <i class="fa-solid fa-map-marker-alt fa-beat "></i></p>
+                <p class="reading-paragraph">Lat: ${station.lat}</p>
+                <p class="reading-paragraph">Lng: ${station.lng}</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Weather <i
+                        class="${models.Station.getWeatherIcon(station.getLastReading()?.code)}"></i></p>
+                <p class="reading-paragraph">Code: ${station.getLastReading()?.code ?: 'No readings'}</p>
+                <p class="reading-paragraph">${station.getLastReading()?.getCodeDescription() ?: 'No readings'}</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Temp <i
+                        class="${models.Station.getTemperatureIcon(station.getLastReading()?.temperature)}"></i></p>
+                <p class="reading-paragraph">${station.getLastReading()?.temperature ?: 'No readings'} °C</p>
+                <p class="reading-paragraph">${station.getLastReading()?.getTemperatureInFahrenheit() ?: 'No readings'}
+                    °F</p>
+                <p class="reading-paragraph">Max: ${station.getMaxTemperature()} °C</p>
+                <p class="reading-paragraph">Min: ${station.getMinTemperature()} °C</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Wind <i class="fa-solid fa-wind fa-beat"></i></p>
+                <p class="reading-paragraph">${station.getLastReading()?.windSpeed ?: 'No readings'} bft</p>
+                <p class="reading-paragraph">
+                    ${models.Station.getCompassDirection(station.getLastReading()?.getWindDirection()) ?: 'No readings'}
+                    <i
+                            class="${models.Station.getCompassDirectionWithIcon(station.getLastReading()?.getWindDirection())}"></i>
+                </p>
+                <p class="reading-paragraph">Feels Like <br>${station.getLastReading()?.getWindChill() ?: 'No readings'}
+                </p>
+                <p class="reading-paragraph">Max: ${station.getMaxWindSpeed()}</p>
+                <p class="reading-paragraph">Min: ${station.getMinWindSpeed()}</p>
+            </div>
+            <div class="column last-reading-column">
+                <p class="secondary-paragraph">Pressure <i class="fa-solid fa-minimize fa-beat"></i></p>
+                <p class="reading-paragraph">${station.getLastReading()?.pressure ?: 'No readings'} hpa</p>
+                <p class="reading-paragraph">Max: ${station.getMaxPressure()}</p>
+                <p class="reading-paragraph">Min: ${station.getMinPressure()}</p>
+            </div>
+        </div>
+    </div>
     <a href="/stations/${station.id}" class="icon has-text-primary">
         <i class="fas fa-folder"></i>
+    </a>
+    <a href="/dashboard/deleteStation/${station.id}" class="icon has-text-danger">
+        <i class="fas fa-trash"></i>
     </a>
 </div>
 #{/list}
 
 #{addStation /}
+

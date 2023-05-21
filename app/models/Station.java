@@ -285,6 +285,7 @@ public class Station extends Model {
 
     /**
      * Get the maximum pressure recorded among the readings.
+     *
      * @return The maximum pressure as a string or "No data" if readings are empty.
      */
     public String getMaxPressure() {
@@ -303,6 +304,7 @@ public class Station extends Model {
 
     /**
      * Get the minimum wind speed recorded among the readings.
+     *
      * @return The minimum wind speed as a formatted string or "No data" if readings are empty.
      */
     public String getMinWindSpeed() {
@@ -322,6 +324,7 @@ public class Station extends Model {
 
     /**
      * Get the maximum wind speed recorded among the readings.
+     *
      * @return The maximum wind speed as a formatted string or "No data" if readings are empty.
      */
     public String getMaxWindSpeed() {
@@ -338,4 +341,75 @@ public class Station extends Model {
             return decimalFormat.format(maxWindSpeed);
         }
     }
+
+    public String getLastWindSpeedTrend() {
+        int numReadings = readings.size();
+        if (numReadings >= 3) {
+            Reading previousReading = readings.get(numReadings - 3);
+            Reading middleReading = readings.get(numReadings - 2);
+            Reading latestReading = readings.get(numReadings - 1);
+
+            float previousWindSpeed = previousReading.windSpeed;
+            float middleWindSpeed = middleReading.windSpeed;
+            float latestWindSpeed = latestReading.windSpeed;
+
+            if (latestWindSpeed > middleWindSpeed && middleWindSpeed > previousWindSpeed) {
+                return "fa-solid fa-arrow-up fa-beat";
+            }
+            if (latestWindSpeed < middleWindSpeed && middleWindSpeed < previousWindSpeed) {
+                return "fa-solid fa-arrow-down fa-beat";
+            } else {
+                return "fa-solid fa-equals fa-beat";
+            }
+        } else {
+            return "fa-solid fa-equals fa-beat";
+        }
+    }
+
+    public String getLastTemperatureTrend() {
+        int numReadings = readings.size();
+        if (numReadings >= 3) {
+            Reading previousReading = readings.get(numReadings - 3);
+            Reading middleReading = readings.get(numReadings - 2);
+            Reading latestReading = readings.get(numReadings - 1);
+
+            float previousTemperature = previousReading.temperature;
+            float middleTemperature = middleReading.temperature;
+            float latestTemperature = latestReading.temperature;
+
+            if (latestTemperature > middleTemperature && middleTemperature > previousTemperature) {
+                return "fa-solid fa-arrow-up fa-beat";
+            } else if (latestTemperature < middleTemperature && middleTemperature < previousTemperature) {
+                return "fa-solid fa-arrow-down fa-beat";
+            } else {
+                return "fa-solid fa-equals fa-beat";
+            }
+        } else {
+            return "fa-solid fa-equals fa-beat";
+        }
+    }
+
+    public String getLastPressureTrend() {
+        int numReadings = readings.size();
+        if (numReadings >= 3) {
+            Reading previousReading = readings.get(numReadings - 3);
+            Reading middleReading = readings.get(numReadings - 2);
+            Reading latestReading = readings.get(numReadings - 1);
+
+            float previousPressure = previousReading.pressure;
+            float middlePressure = middleReading.pressure;
+            float latestPressure = latestReading.pressure;
+
+            if (latestPressure > middlePressure && middlePressure > previousPressure) {
+                return "fa-solid fa-arrow-up fa-beat";
+            } else if (latestPressure < middlePressure && middlePressure < previousPressure) {
+                return "fa-solid fa-arrow-down fa-beat";
+            } else {
+                return "fa-solid fa-equals fa-beat";
+            }
+        } else {
+            return "fa-solid fa-equals fa-beat";
+        }
+    }
+
 }

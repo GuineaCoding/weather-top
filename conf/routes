@@ -7,14 +7,20 @@ GET     /                                       Start.index
 GET     /dashboard                              Dashboard.index
 GET     /about                                  About.index
 GET     /admin                                  Admin.index
+#GET     /editDetails                                  editDetails.index
+GET     /stations/{id}/deleteReading/{readingId}     StationCtrl.deleteReading
+GET     /dashboard/deleteStation/{id}          Dashboard.deleteStation
+
 
 GET     /stations/{name}                         StationCtrl.index
-GET     /style/style.css                        staticDir:/app/style/
+GET /style/style.css -> staticDir:/app/style/
 
 POST    /stations/{id}/addReading                 StationCtrl.addReading
 POST    /dashboard/addStation                  Dashboard.addStation
+POST    /account/edit                          UserAccount.changeData
 
 GET    /signup                                  UserAccount.signup
+GET    /editDetails                             UserAccount.loadAccountData
 GET    /login                                   UserAccount.login
 POST   /register                                UserAccount.register
 POST   /authenticate                            UserAccount.authenticate
