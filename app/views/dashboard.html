@@ -23,7 +23,8 @@
             <div class="column last-reading-column">
                 <p class="secondary-paragraph">Temp <i
                         class="${models.Station.getTemperatureIcon(station.getLastReading()?.temperature)}"></i></p>
-                <p class="reading-paragraph">${station.getLastReading()?.temperature ?: 'No readings'} °C</p>
+                <p class="reading-paragraph">${station.getLastReading()?.temperature != null ? (station.getLastReading().temperature != 0 ? station.getLastReading().temperature : '0') : 'No readings'} °C</p>
+
                 <p class="reading-paragraph">${station.getLastReading()?.getTemperatureInFahrenheit() ?: 'No readings'}
                     °F</p>
                 <p class="reading-paragraph">Max: ${station.getMaxTemperature()} °C</p>
@@ -32,7 +33,7 @@
             </div>
             <div class="column last-reading-column">
                 <p class="secondary-paragraph">Wind <i class="fa-solid fa-wind fa-beat"></i></p>
-                <p class="reading-paragraph">${station.getLastReading()?.windSpeed ?: 'No readings'} bft</p>
+                <p class="reading-paragraph">${station.getLastReading()?.windSpeed != null ? (station.getLastReading().windSpeed != 0 ? station.getLastReading().windSpeed : '0') : 'No readings'} bft</p>
                 <p class="reading-paragraph">
                     ${models.Station.getCompassDirection(station.getLastReading()?.getWindDirection()) ?: 'No readings'}
                     <i
@@ -46,7 +47,7 @@
             </div>
             <div class="column last-reading-column">
                 <p class="secondary-paragraph">Pressure <i class="fa-solid fa-minimize fa-beat"></i></p>
-                <p class="reading-paragraph">${station.getLastReading()?.pressure ?: 'No readings'} hpa</p>
+                <p class="reading-paragraph">${station.getLastReading()?.pressure != null ? station.getLastReading().pressure : 'No readings'} hpa</p>
                 <p class="reading-paragraph">Max: ${station.getMaxPressure()}</p>
                 <p class="reading-paragraph">Min: ${station.getMinPressure()}</p>
                 <p class="reading-paragraph">Trend: <i class="${station.getLastPressureTrend()}"></i></p>
